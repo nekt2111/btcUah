@@ -1,0 +1,132 @@
+/*Обнуление */
+*{
+    padding: 0;margin: 0;border: 0;
+}
+:before,:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{height:100%;width:100%;font-size:100%;line-height:1;font-size:14px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a,a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
+/*--------------------*/
+
+
+
+.wrapper{
+    display: grid;
+    justify-items: center;
+    font-family: sans-serif;
+    font-size: 15px;
+
+}
+
+.auth_form_wrapper,.registration_form_wrapper,.form_wrapper{
+    margin-top: 10%;
+    width: 320px;
+    height: 400px;
+    background-color: gray;
+    border-radius: 25px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.auth_form_wrapper{
+    grid-template: 1.2fr 0.2fr 0.7fr 1fr 1fr 1fr/1fr;
+}
+
+.registration_form_wrapper{
+    grid-template: 1.2fr 0.2fr 0.7fr 1fr 1fr 1fr/1fr;
+}
+
+.form_wrapper{
+    grid-template: 1.2fr 0.2fr 0.7fr 1fr 1fr 0.5fr/1fr;
+}
+
+.title_block{
+    font-size: 2rem;
+    font-family: sans-serif;
+}
+
+input{
+    padding: 10px;
+    border: 0;
+    border-radius: 10px;
+}
+
+.submit_btn_block button{
+    padding: 10px 40px;
+    border-radius: 10px;
+}
+
+.registration_link{
+    display: block;
+}
+
+.spinner__wrapper{
+    height: 100px;
+    width: 100%;
+    padding-top: 100px;
+}
+
+.mini-spinner__wrapper{
+    text-align: center;
+    height: 20px;
+    width: 100%;
+}
+
+#spinner, #mini-spinner{
+    display: none;
+    border: 5px solid #f3f3f3;
+    border-top:5px solid black;
+    border-radius: 100%;
+    margin: auto;
+    animation: spin 1s infinite linear;
+}
+
+#spinner{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+}
+
+#mini-spinner{
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    } to {
+          transform: rotate(360deg);
+      }
+}
+
+.warning_block{
+    color: darkred;
+    font-weight: bold;
+    text-align: center;
+}
+
+#spinner.show, #mini-spinner.show {
+    display: inline-block;
+}
+
+.exit_link, .registration_link,.logIn_link{
+    cursor: pointer;
+    color: #551A8B;
+}
+

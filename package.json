@@ -1,0 +1,26 @@
+{
+  "name": "bitcoinuah",
+  "version": "1.0.0",
+  "description": "project for genesis engineering school",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Nikita Linovytskyi",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "database": "0.0.2",
+    "database.js": "0.0.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.1",
+    "request": "^2.88.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "request-promise": "^4.2.6"
+  }
+}
