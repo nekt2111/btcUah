@@ -42,17 +42,19 @@ async function registerUser(){
 async function logInUser(){
     await client.requestToLogInUser(getValuesToLogin())
     let status = client.getResponseStatus()
-    if(status === 200){
-        router.changeLocation('main')
-    }
-    else if(status === 401){
-        setAnError('Неправильна пошта або пароль')
-    }
-    else if(status === 404){
-        setAnError('Користувач з такою поштою не знайдений')
-    }
-    else {
-        setAnError('Виникла помилка. Спробуйте ще раз')
+    switch (status){
+        case 200:
+            router.changeLocation('main')
+            break
+        case 401:
+            setAnError('Неправильна пошта або пароль')
+            break
+        case 404:
+            setAnError('Користувач з такою поштою не знайдений')
+            break
+        default:
+            setAnError('Виникла помилка. Спробуйте ще раз')
+            break
     }
 }
 
@@ -99,22 +101,22 @@ async function addEventListeners(state){
            break
         case "registration":
             await document.querySelector(".registration_form_wrapper").addEventListener('submit',async (e)=>{
-                await registerUser()
                 e.preventDefault()
+                await registerUser()
             })
             await document.querySelector(".logIn_link").addEventListener('click',(e)=>{
-                router.changeLocation('')
                 e.preventDefault()
+                router.changeLocation('')
             })
             break
         default:
             await document.querySelector(".registration_link").addEventListener('click',(e)=>{
-                router.changeLocation('registration')
                 e.preventDefault()
+                router.changeLocation('registration')
             })
             await document.querySelector(".auth_form_wrapper").addEventListener('submit',async (e)=>{
-                await logInUser()
                 e.preventDefault()
+                await logInUser()
             })
             break;
     }
