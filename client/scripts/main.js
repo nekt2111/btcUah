@@ -23,14 +23,13 @@ function getValuesToRegister(){
     let email = document.getElementById("register_email").value
     let password = document.getElementById("register_password").value
     return {email, password};
-
 }
 
 async function registerUser(){
     await client.requestToRegisterUser(getValuesToRegister())
     let status = client.getResponseStatus()
     if(status === 201){
-        window.location.hash = "#main"
+        router.changeLocation('main')
     }
     else if(status === 409){
         setAnError('Користувач з такою поштою вже зареєстрован')
@@ -63,11 +62,11 @@ function getValueToConvert(){
 
 async function convertInputValue(){
     let value = getValueToConvert()
-    if(!isNaN(value) && value >= 0) {
+    if(!isNaN(value) && value >= 0){
         let response = await client.getCurrency()
         let result = response * value
         let resultStr = result.toString()
-        if(resultStr.includes('.')) {
+        if(resultStr.includes('.')){
             let splitedStr = result.toString().split('.')
             document.getElementById('result').innerText = splitedStr[0] + "." + splitedStr[1].substr(0, 2)
         }
@@ -137,10 +136,10 @@ async function load(){
     let currency;
     if(localStorage.getItem('authToken') !== null) {
         currency = await client.getCurrency()
-        fileName = await router.getCurrentState(client.getResponseStatus())
+        fileName = router.getCurrentState(client.getResponseStatus())
     }
     else{
-        fileName = await router.getCurrentState()
+        fileName = router.getCurrentState()
     }
     await change(fileName)
     spinner.hideSpinner()

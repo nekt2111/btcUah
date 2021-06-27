@@ -1,6 +1,6 @@
 
 class Router {
-      async getCurrentState(status) {
+       getCurrentState(status) {
         let fileName;
         let location = window.location.hash.split("#")[1];
         if(status !== 200) {

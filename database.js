@@ -7,10 +7,13 @@ class Database {
         let database = fs.readFileSync(db)
         return JSON.parse(database)
     }
-    addNewUserToDatabase(user) {
+    addNewUserToDatabase(user){
         let database = this.getDatabase()
         database.push(user)
         fs.writeFileSync(db, JSON.stringify(database))
+    }
+    findUser(email){
+        return this.getDatabase().find(c => c.email === email)
     }
 }
 

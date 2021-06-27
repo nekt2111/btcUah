@@ -12,8 +12,9 @@ const app = express()
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname,'client')))
 
-function getUsers(){
-    return database.getDatabase()
+
+function findUser(email){
+    return database.findUser(email)
 }
 
 function createUser(user){
@@ -35,7 +36,7 @@ app.get('/btcRate',async (req,res)=>{
 
 app.post('/user/create',(req,res)=>{
     let candidate = req.body
-    if(getUsers().find(c => c.email === candidate.email) === undefined){
+    if(findUser(candidate.email) === undefined){
         let salt = bcrypt.genSaltSync()
         let password = req.body.password
         let user = {email:candidate.email,password:bcrypt.hashSync(password,salt)}
@@ -50,7 +51,7 @@ app.post('/user/create',(req,res)=>{
 
 app.post('/user/login',(req,res)=>{
     let candidate = req.body
-    let potentialUser = getUsers().find(c => c.email === candidate.email)
+    let potentialUser = findUser(candidate.email)
     if(potentialUser !== undefined){
         if(bcrypt.compareSync(candidate.password,potentialUser.password)){
             const token = getJwtToken(potentialUser)

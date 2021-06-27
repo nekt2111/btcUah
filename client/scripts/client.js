@@ -3,7 +3,7 @@ class Client {
     response
     async requestToRegisterUser(user){
         let response = await this.request('/user/create','POST',user)
-        if(response.status === 201){
+        if(this.getResponseStatus() === 201){
             localStorage.setItem('authToken',response.token)
         }
     }
@@ -17,7 +17,7 @@ class Client {
 
     async requestToLogInUser(user){
         let response = await this.request('/user/login','POST',user)
-        if(response.status === 200){
+        if(this.getResponseStatus() === 200){
             localStorage.setItem('authToken',response.token)
         }
     }
@@ -30,8 +30,6 @@ class Client {
     async getCurrency(){
         return await this.requestToGetCurrency()
     }
-
-
 
     async request(url, method = 'GET', data = null) {
         try {
